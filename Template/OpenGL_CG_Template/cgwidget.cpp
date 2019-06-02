@@ -38,7 +38,7 @@ void CGWidget::initializeGL()
 void CGWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    gluOrtho2D(0.0, winWidth, 0.0, winHeight);
+    glViewport(0, 0, winWidth, winHeight);
 }
 
 void CGWidget::resizeGL(int width, int height)
@@ -54,6 +54,8 @@ void CGWidget::resizeGL(int width, int height)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(0.0, width, 0.0, height);
+    winWidth = width;
+    winHeight = height;
 }
 
 void CGWidget::keyPressEvent(QKeyEvent *event)

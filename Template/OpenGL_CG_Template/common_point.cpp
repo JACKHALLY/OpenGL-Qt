@@ -11,3 +11,20 @@ void CGPointGLint::draw() const
     glEnd();
     glFlush();
 }
+
+GLint CGPointGLint::getX() const
+{
+    return x;
+}
+GLint CGPointGLint::getY() const
+{
+    return y;
+}
+void CGPointGLint::setX(const GLint x)
+{
+    this->x = x;
+}
+void CGPointGLint::setY(const GLint y)
+{
+    this->y = y;
+}
