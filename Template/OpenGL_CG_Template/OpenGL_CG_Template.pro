@@ -5,8 +5,12 @@ TARGET = OpenGL_CG
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 HEADERS += \
-    cgwidget.h
+    cgwidget.h \
+    common_point.h
 
 SOURCES += \
     main.cpp \
-    cgwidget.cpp
+    cgwidget.cpp \
+    common_point.cpp
+
+DISTFILES +=
