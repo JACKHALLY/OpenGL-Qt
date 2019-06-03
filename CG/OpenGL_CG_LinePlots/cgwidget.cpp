@@ -48,26 +48,21 @@ void CGWidget::paintGL()
     glClear(GL_COLOR_BUFFER_BIT);
     glViewport(0, 0, winWidth, winHeight);
 
-    int pointNum = 0;
     CGLine<GLdouble> line(CGLine<GLdouble>::GL_DOUBLE_T);
-    for(GLdouble x = 0; x < xRange; x += 0.005)
-    {
-        switch(pointNum)
-        {
-        case 0:
-            line.setStartX(scaleX(x));
-            line.setStartY(scaleY(f(x)));
-            ++pointNum;
-            break;
-        case 1:
-            line.setEndX(scaleX(x));
-            line.setEndY(scaleY(f(x)));
-            line.draw();
+    GLdouble x = 0.0;
 
-            line.setStartX(line.getEndX());
-            line.setStartY(line.getEndY());
-            break;
-        }
+    // the first point
+    line.setStartX(scaleX(x));
+    line.setStartY(scaleY(f(x)));
+    // the second and other ponits in turn
+    for(x += 0.005; x < xRange; x += 0.005)
+    {
+        line.setEndX(scaleX(x));
+        line.setEndY(scaleY(f(x)));
+        line.draw();
+
+        line.setStartX(line.getEndX());
+        line.setStartY(line.getEndY());
     }
     glEnd();
     glFlush();
