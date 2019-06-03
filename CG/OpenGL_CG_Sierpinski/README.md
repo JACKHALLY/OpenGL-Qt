@@ -8,11 +8,7 @@
 Now iterate the following steps until the pattern is satifyingly filled in.
 
 3. Choose one of the three points T<sub>0</sub>, T<sub>1</sub>, and T<sub>2</sub> at random, call it T.
-4. Construct the next point P<sub>k</sub> as the midpoint between T and previously found point P<sub>k-1</sub>. That is,
-<center>
-P<sub>k</sub> = midpoint of P<sub>k-1</sub> and T
-</center>
-
+4. Construct the next point P<sub>k</sub> as the midpoint between T and previously found point P<sub>k-1</sub>. That is, P<sub>k</sub> = midpoint of P<sub>k-1</sub> and T.
 5. draw P<sub>k</sub>
 
 ## Example
