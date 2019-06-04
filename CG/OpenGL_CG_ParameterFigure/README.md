@@ -12,7 +12,9 @@
 ```
 # Result
 1. hardwiredHouse()
+
 ![the result of hard-coded](./figs/hard-coded.PNG)
 
 2. ParameterHouse class
+
 ![the result of ParameterHouse](./figs/parameter.PNG)
