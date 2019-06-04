@@ -8,7 +8,8 @@ HEADERS += \
     cgwidget.h \
     common_line.h \
     common_point.h \
-    common_type.h
+    common_type.h \
+    common_polyline.h
 
 SOURCES += \
     cgwidget.cpp \

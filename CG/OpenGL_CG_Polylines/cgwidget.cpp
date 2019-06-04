@@ -1,5 +1,7 @@
 ﻿#include "cgwidget.h"
+#include "common_polyline.h"
 #include <fstream>
+#include <vector>
 #include <QDebug>
 
 CGWidget::CGWidget(QWidget *parent,
@@ -100,20 +102,14 @@ void CGWidget::drawPolylineFile()
         return;
     }
 
-    glClear(GL_COLOR_BUFFER_BIT);
-    GLint numPloys, numLines, x, y;
+    GLint numPloys;
     inStream >> numPloys;
+
+    std::vector<CGPoint<GLdouble>> points;
+    CGPolyLine<GLdouble> polyLines(CGType::GL_DOUBLE_T, points);
     for(int i = 0; i < numPloys; ++i)
     {
-        inStream >> numLines;
-        glBegin(GL_LINE_STRIP);
-        for(int j = 0; j < numLines; ++j)
-        {
-            inStream >> x >> y;
-            qDebug() << x << y;
-            glVertex2i(x, y);
-        }
-        glEnd();
+        polyLines.drawFromFileStream(inStream);
     }
     glFlush();
     inStream.close();
