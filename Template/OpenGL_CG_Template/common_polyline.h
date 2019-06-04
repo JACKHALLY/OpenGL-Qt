@@ -12,7 +12,8 @@ class CGPolyLine
 {
 public:
     CGPolyLine(CGType::DataType type,
-                std::vector<CGPoint<T>> points);
+                std::vector<CGPoint<T>> points,
+                bool isClosed);
     std::vector<CGPoint<T>> getPoints() const;
     void draw() const;
     void drawFromFileStream(std::fstream &pointsStream);
@@ -22,14 +23,15 @@ private:
 private:
     std::vector<CGPoint<T>> points;
     CGType::DataType type;
+    bool isClosed;
 };
 
-#include <iostream>
-//#include "common_line.template"
 template<class T>
 CGPolyLine<T>::CGPolyLine(CGType::DataType type,
-               std::vector<CGPoint<T>> points)
-            : points(points), type(type)
+               std::vector<CGPoint<T>> points,
+               bool isClosed)
+            : points(points), type(type),
+              isClosed(isClosed)
 {}
 
 template<class T>
@@ -51,7 +53,14 @@ void CGPolyLine<T>::drawInt() const
 {
     typename std::vector<CGPoint<T>>::const_iterator citer;
 
-    glBegin(GL_LINE_STRIP);
+    if(isClosed)
+    {
+        glBegin(GL_LINE_LOOP);
+    }
+    else
+    {
+        glBegin(GL_LINE_STRIP);
+    }
     for(citer = points.begin(); citer != points.end(); ++citer)
     {
         glVertex2i(citer->getX(), citer->getY());
@@ -64,7 +73,14 @@ void CGPolyLine<T>::drawDouble() const
 {
     typename std::vector<CGPoint<T>>::const_iterator citer;
 
-    glBegin(GL_LINE_STRIP);
+    if(isClosed)
+    {
+        glBegin(GL_LINE_LOOP);
+    }
+    else
+    {
+        glBegin(GL_LINE_STRIP);
+    }
     for(citer = points.begin(); citer != points.end(); ++citer)
     {
         glVertex2d(citer->getX(), citer->getY());
@@ -85,7 +101,14 @@ void CGPolyLine<T>::drawFromFileStream(std::fstream &pointsStream)
     T x, y;
 
     pointsStream >> pointsNum;
-    glBegin(GL_LINE_STRIP);
+    if(isClosed)
+    {
+        glBegin(GL_LINE_LOOP);
+    }
+    else
+    {
+        glBegin(GL_LINE_STRIP);
+    }
     for(GLint i = 0; i < pointsNum; ++i)
     {
         pointsStream >> x >> y;
