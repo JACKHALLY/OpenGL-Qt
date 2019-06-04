@@ -6,7 +6,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 HEADERS += \
     cgwidget.h \
-    common_point.h
+    common_point.h \
+    common_polyline.h
 
 SOURCES += \
     main.cpp \
